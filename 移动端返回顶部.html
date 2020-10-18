@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>移动端返回顶部</title>
+    <style>
+      * {
+        height: 800px;
+      }
+      .nav {
+        height: 200px;
+        background-color: aquamarine;
+      }
+      .icon {
+        display: none;
+        float: right;
+        width: 40px;
+        height: 40px;
+        padding-top: 250px;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+    <script src="fastclick.js"></script>
+    <!-- 引入fastclick插件 -->
+  </head>
+  <body>
+    <div class="nav">顶部</div>
+    <div class="icon">
+      <img src="images/home.png" alt="" />
+    </div>
+    <script>
+      //  fastclick 插件是使用
+      if ("addEventListener" in document) {
+        document.addEventListener(
+          "DOMContentLoaded",
+          function () {
+            FastClick.attach(document.body);
+          },
+          false
+        );
+      }
+
+      var icon = document.querySelector(".icon");
+      var nav = document.querySelector(".nav");
+      //添加页面滚动事件
+      window.addEventListener("scroll", function () {
+        if (window.pageYOffset >= nav.offsetTop) {
+          icon.style.display = "block";
+        } else icon.style.display = "none";
+      });
+      //图标添加点击事件
+      icon.addEventListener("click", function () {
+        window.scroll(0, 0);
+      });
+    </script>
+  </body>
+</html>
