@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>案例：移动端轮播图</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    html {
+        font-size: 20px;
+    }
+    
+    .focus {
+        position: relative;
+        padding-top: 10px;
+         /* 让其他的图片隐藏 只显示一张图片 */
+        /* overflow: hidden; */
+    }
+    .focus ul{
+        overflow: hidden; /*清除浮动*/
+        width: 500%;
+        /* 因为下面滚动的问题 在第一张的前面加了一张图片 需要显示原来的第一张图片 */
+        margin-left: -100%;
+        /* 这里所有百分比都是相对于父亲的 */
+    }
+    .focus ul li{
+        float: left;
+        width: 20%;
+        /* 这里的宽度用的100% 如果像pc端那样 给ul一个超大的宽度 img浮动 img继承的是ul的宽度 img也会变大  */
+        /* width: 100%; */
+        /* 如果用百分比  可以让每个img（5张图片）的宽度平均占父级元素的宽度*/
+        height: 3rem;
+    }
+    .foucus img {
+        width: 100%;
+        height: 3rem;
+    }
+    .focus ol{
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        margin: 0;
+    }
+    .focus ol li{
+        display: inline-block;
+        width: 5px;
+        height: 5px;
+        background-color: #fff;
+        list-style: none;
+        border-radius: 2px;
+        transition: all .3s;
+    }
+    .focus ol li.current{
+        width: 15px;
+    }
+    
+</style>
+<script src="js/index.js"></script>
+</head>
+
+<body>
+<div class="focus">
+    <ul>
+        <li><img src="images/mobile3.jpg" alt=""></li>
+        <li><img src="images/mobile1.jpg" alt=""></li>
+        <li><img src="images/mobile2.jpg" alt=""></li>
+        <li><img src="images/mobile3.jpg" alt=""></li>
+        <li><img src="images/mobile1.jpg" alt=""></li>
+        <!-- 因为移动端和pc端不同 移动端需要手指拖动 
+        在第一张向左拖动的时候 需要显示最后一张 但是做无缝滚动 
+        最后一张是第一张 所以应该在第一张的前面再加一张图片 -->
+    </ul>
+    <!-- 小圆点 -->
+    <ol>
+        <li class="current"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ol>
+</div>
+</body>
+</html>
